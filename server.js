@@ -3,6 +3,7 @@ const app = express();
 const sequelize = require("./src/db");
 const { port } = require("./src/config");
 const { getMmr, setMmr } = require("./src/dataManager");
+const bodyParser = require('body-parser');
 
 const start = async () => {
     try {
@@ -13,8 +14,13 @@ const start = async () => {
         console.log(`DB connection error: ${e}`);
     }
 
-    app.use(express.urlencoded({ extended: true }))
-    app.use(express.json())
+    app.use(bodyParser.json());
+
+    app.use(function (req, res) {
+        res.setHeader('Content-Type', 'text/plain')
+        res.write('you posted:\n')
+        res.end(JSON.stringify(req.body, null, 2))
+    })
 
     app.post("/getMmr", async (req, res) => {
         const ids = req.body.ids || [];
