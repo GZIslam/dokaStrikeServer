@@ -6,9 +6,9 @@ const dotaManager = {
         for (let i = 0; i < ids.length; i++) {
             let player = await PlayerModel.findOne({ where: { steamId: String(ids[i]) } });
             if (!player) {
-                player = await PlayerModel.create({ ["rank" + type]: 1000, steamId: String(ids[i]) });
+                player = await PlayerModel.create({ steamId: String(ids[i]) });
             }
-            res.push({ id: player.steamId, rank: player["rank" + type] });
+            res.push({ id: player.steamId, rank: player["rank" + type] || 1000 });
         }
         return res;
     },
