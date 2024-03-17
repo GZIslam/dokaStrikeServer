@@ -16,17 +16,17 @@ const start = async () => {
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json())
 
-    app.post("/getMmr", (req, res) => {
+    app.post("/getMmr", async (req, res) => {
         const ids = req.body.ids || [];
         const type = req.body.type;
-        const result = getMmr(ids, type);
+        const result = await getMmr(ids, type);
         res.send(result)
     })
 
-    app.post("/setMmr", (req, res) => {
+    app.post("/setMmr", async (req, res) => {
         const data = req.body.dota || [];
         const type = req.body.type;
-        const result = setMmr(data, type);
+        const result = await setMmr(data, type);
         res.send(result)
     })
 
