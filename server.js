@@ -31,6 +31,7 @@ const start = async () => {
     })
 
     app.listen(port)
+    console.log("App listening in port: ", port)
 }
 
 start();
