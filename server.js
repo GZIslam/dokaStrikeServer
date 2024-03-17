@@ -16,11 +16,11 @@ const start = async () => {
 
     app.use(bodyParser.json());
 
-    app.use(function (req, res) {
-        res.setHeader('Content-Type', 'text/plain')
-        res.write('you posted:\n')
-        res.end(JSON.stringify(req.body, null, 2))
-    })
+    // app.use(function (req, res) {
+    //     res.setHeader('Content-Type', 'text/plain')
+    //     res.write('you posted:\n')
+    //     res.end(JSON.stringify(req.body, null, 2))
+    // })
 
     app.post("/getMmr", async (req, res) => {
         const ids = req.body.ids || [];
