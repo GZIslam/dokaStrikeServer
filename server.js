@@ -20,14 +20,16 @@ const start = async () => {
         const ids = req.body.ids || [];
         const type = req.body.type;
         const result = await getMmr(ids, type);
-        res.send(result)
+        console.log("RESULT: ", result)
+        res.send({ data: result })
     })
 
     app.post("/setMmr", async (req, res) => {
         const data = req.body.data || [];
         const type = req.body.type;
         const result = await setMmr(data, type);
-        res.send(result)
+        console.log("RESULT: ", result)
+        res.send({ data: result })
     })
 
     app.listen(port)
