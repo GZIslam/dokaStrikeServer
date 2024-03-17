@@ -20,7 +20,6 @@ const start = async () => {
         const ids = req.body.ids && JSON.parse(req.body.ids) || [];
         const type = req.body.type;
         const result = await getMmr(ids, type);
-        console.log(req.body)
         res.send({ data: result })
     })
 

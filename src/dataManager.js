@@ -16,7 +16,7 @@ const dotaManager = {
         const res = [];
         for (let i = 0; i < data.length; i++) {
             const player = await PlayerModel.findOne({ where: { steamId: String(data[i].id) } });
-            const updated = await player.update({ ["rank" + type]: data[i].value });
+            const updated = await player.update({ ["rank" + type]: Number(data[i].value) });
             res.push({ id: updated.steamId, rank: updated["rank" + type] });
         }
         return res;
