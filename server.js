@@ -20,7 +20,6 @@ const start = async () => {
         const ids = req.body.ids || [];
         const type = req.body.type;
         const result = await getMmr(ids, type);
-        console.log("RESULT: ", result)
         res.send({ data: result })
     })
 
@@ -28,7 +27,6 @@ const start = async () => {
         const data = req.body.data || [];
         const type = req.body.type;
         const result = await setMmr(data, type);
-        console.log("RESULT: ", result)
         res.send({ data: result })
     })
 
