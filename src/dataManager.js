@@ -5,12 +5,14 @@ const dotaManager = {
         const res = [];
         for (let i = 0; i < ids.length; i++) {
             let player = await PlayerModel.findOne({ where: { steamId: String(ids[i]) } });
-            console.log("player", player)
+            console.log(!player)
             if (!player) {
-                player = await PlayerModel.create({ ["rank" + type]: 1000, steamId: String(ids[i]) })
+                player = await PlayerModel.create({ ["rank" + type]: 1000, steamId: String(ids[i]) });
             }
-            res.push({ id: player.steamId, rank: player["rank" + type] })
+            console.log("player: ", player);
+            res.push({ id: player.steamId, rank: player["rank" + type] });
         }
+        console.log("getMmr: ", res);
         return res;
     },
     setMmr: async (data, type) => {
@@ -18,9 +20,10 @@ const dotaManager = {
         for (let i = 0; i < data.length; i++) {
             const player = await PlayerModel.findOne({ where: { steamId: String(data[i].id) } });
             const updated = await player.update({ ["rank" + type]: data.value });
-            res.push({ id: updated.steamId, rank: updated["rank" + type] })
+            console.log("updated: ", updated);
+            res.push({ id: updated.steamId, rank: updated["rank" + type] });
         }
-
+        console.log("setMmr: ", res);
         return res;
     }
 };

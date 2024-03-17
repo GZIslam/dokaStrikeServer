@@ -24,7 +24,7 @@ const start = async () => {
     })
 
     app.post("/setMmr", async (req, res) => {
-        const data = req.body.dota || [];
+        const data = req.body.data || [];
         const type = req.body.type;
         const result = await setMmr(data, type);
         res.send(result)
