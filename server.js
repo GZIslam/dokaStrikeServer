@@ -17,7 +17,7 @@ const start = async () => {
     app.use(express.json())
 
     app.post("/getMmr", async (req, res) => {
-        const ids = req.body.ids || [];
+        const ids = req.body.ids && JSON.parse(req.body.ids) || [];
         const type = req.body.type;
         const result = await getMmr(ids, type);
         console.log(req.body)
@@ -25,7 +25,7 @@ const start = async () => {
     })
 
     app.post("/setMmr", async (req, res) => {
-        const data = req.body.data || [];
+        const data = req.body.data && JSON.parse(req.body.data) || [];
         const type = req.body.type;
         const result = await setMmr(data, type);
         res.send({ data: result })
